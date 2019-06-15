@@ -1,0 +1,47 @@
+<div class="container" ng-controller="homeCtrl">
+    <div class="row panel clouds">
+        <div class="col">
+            <h3>GST - Editor</h3>
+        </div>
+    </div>
+    <div class="row section">
+        <div class="col s2 m2 l1">
+            <button class="button midnight tiny" ng-click="browse()">BROWSE</button>
+            <input type="file" id="uploadFile" accept="application/json" on-read-file="uploadGSTDataFile($fileContent)" style="display:none;">
+        </div>
+        <div class="col s10 m10 l">
+            <input ng-hide="result.error" class="input border tiny" ng-model="fileName" name="filename" type="text" placeholder="file">
+        </div>
+    </div>
+    <div class="row section">
+        <div class="col s2 m2 l1">
+            <button class="button tiny" ng-click="fire()"><i class="fas fa-fire fire"></i>FIRE</button>
+        </div>
+    </div>
+    <div ng-if="typeOfGst.length" ng-init="filter.typeOfGst = typeOfGst[0]">
+        <div class="row row-padding">
+            <div class="col s12 m2 l2">
+                <select class="select tiny" ng-model="filter.typeOfGst" ng-options="st for st in typeOfGst">
+                </select>
+            </div>
+        </div>
+        <div class="row margin-top">
+            <div class="col s12 m12 l12 scroll-div">
+                <table class="table tiny">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th ng-repeat="h in header[filter.typeOfGst]">{{ h }}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- <tr ng-repeat="d in data[filter.typeOfGst] track by $index">
+                            <td>{{ $index + 1 }}</td>
+                            <td ng-repeat="h in header[filter.typeOfGst]">{{ d[h] }} </td>
+                        </tr> -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
